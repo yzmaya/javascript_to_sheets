@@ -1,0 +1,26 @@
+<html>
+<header>
+    <title>Prueba de envio de js a sheets</title>
+</header>
+
+<body>
+    <form name="submit-form">
+        <input name="nombres" type="text" placeholder="Nombres" required>
+        <input name="apellidos" type="text" placeholder="Apellidos" required>
+        <input name="email" type="email" placeholder="Email" required>
+        <button type="submit">Enviar</button>
+      </form>
+</body>
+<script>
+    
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxmpyAUjGHNcER3TIFjWQt8SC2Anwdgt6mUteJaKfdlhbOuQSdUq7aYmu-T-L54m8g_Hg/exec'
+const form = document.forms['submit-form']
+
+form.addEventListener('submit', e => {
+  e.preventDefault()
+  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(response => console.log('Success!', response))
+    .catch(error => console.error('Error!', error.message))
+})
+ </script>   
+</html>
